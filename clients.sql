@@ -18,4 +18,18 @@ USE ventes;
 
 SHOW TABLES;
 
--- 4. Création de la table clients
+-- 5. Création de la table clients
+-- INTEGER :  correspond au type ENTIER de la donnée
+-- NOT NULL : cette colonne doit toujours contenir une information
+-- AUTO_INCREMENT : demande à MySQL de fournir des valeurs en incrémentant automatiquement les clés primaires
+-- PRIMARY KEY : défini la colonne comme étant la clé primaire
+-- (X) : permet de réduire le nom de caractère à X
+-- UNIQUE : Appliquer une contrainte d'unicité
+
+CREATE TABLE clients(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR (50) NOT NULL,
+    prenom VARCHAR (50) NOT NULL,
+    email VARCHAR (70) UNIQUE,
+    telephone VARCHAR (20) NOT NULL
+);
