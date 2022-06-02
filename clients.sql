@@ -82,3 +82,29 @@ UPDATE clients SET age=29 WHERE id=1;
 -- On peut modifier plusieurs colonnes d'un même ID :
 
 UPDATE clients SET nom="Prevot",prenom="Oceane",postnom="Oce",age=27 WHERE id=2;
+
+-- 10. Supprimer un enregistrement <DELETE FROM> d'une table <nom_table> <WHERE> la condition <id=3>
+
+DELETE FROM clients WHERE id=3;
+
+-- Configurer MYSQL en mode strict (config avancée)
+
+-- Valeur pour le monde strict :  STRICT_TRANS_TABLES
+
+-- Vérifier le mode de transaction :
+
+SHOW VARIABlES LIKE 'sql_mode';
+
+-- Définir le mode strict pour les transactions (s'il n'est pas activé au dessus):
+
+set sql_mode='STRICT_TRANS_TABLES';
+
+-- 11. Filtrer les enregistrements : on sélectionne tous les enregistrement <SELECT * FROM> et on ajoute la condition du filtre <WHERE> ...
+
+SELECT * FROM clients WHERE age>20;
+
+-- On peut filtrer les enregistrements selon plusieurs conditions en ajoutant :
+-- <AND> si on veut cumuler les conditions
+-- <OR> si on veut juste 1 condition de vraie
+
+SELECT * FROM clients WHERE age>20 AND prenom="Jordan";
