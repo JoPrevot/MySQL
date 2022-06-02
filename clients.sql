@@ -14,4 +14,8 @@ CREATE DATABASE Ventes;
 
 USE ventes;
 
+-- 4. Lister les tables de la DB
+
+SHOW TABLES;
+
 -- 4. Création de la table clients
