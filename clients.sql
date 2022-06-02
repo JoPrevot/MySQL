@@ -74,3 +74,11 @@ values("Prevot","Jordan","jordan.prevot59@gmail.com","0123456789")
 
 ALTER TABLE clients ADD COLUMN age INTEGER(2);
 
+-- 9. Mise à jour des données <UPDATE> de la table client <nom_table> 
+-- <SET> la colonne à mettre à jour et sa nouvelle valeur <age=29> suivi d'une condition <WHERE> ici l'identifiant de la ligne 1 <id=1>
+
+UPDATE clients SET age=29 WHERE id=1;
+
+-- On peut modifier plusieurs colonnes d'un même ID :
+
+UPDATE clients SET nom="Prevot",prenom="Oceane",postnom="Oce",age=27 WHERE id=2;
