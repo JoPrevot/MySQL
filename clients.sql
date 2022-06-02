@@ -28,8 +28,8 @@ SHOW TABLES;
 
 CREATE TABLE clients(
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR (50) NOT NULL,
-    prenom VARCHAR (50) NOT NULL,
-    email VARCHAR (70) UNIQUE,
-    telephone VARCHAR (20) NOT NULL
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(70) UNIQUE,
+    telephone VARCHAR(20) NOT NULL
 );
