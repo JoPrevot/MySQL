@@ -39,3 +39,14 @@ CREATE TABLE clients(
 
 DESC clients;
 
+-- 7. Modifier une table en ajoutant une nouvelle colonne
+
+ALTER TABLE clients ADD postnom VARCHAR(50);
+
+-- 8. Modifier une table en ajoutant une nouvelle colonne après une autre
+
+ALTER TABLE clients ADD postnom VARCHAR(50) AFTER prenom;
+
+-- Il est possible de modifier une colonne déjà existante en rajoutant une contrainte (par exemple ici j'ai oublié de la mettre après le prénom)
+
+ALTER TABLE clients MODIFY COLUMN postnom VARCHAR(50) AFTER prenom;
