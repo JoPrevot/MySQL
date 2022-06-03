@@ -36,7 +36,7 @@ INSERT INTO orders(typePresta,designation,clientId,nbDays,unitPrice,state) value
 ("Formation","React avancé",2,3,1000,2),
 ("Coaching","ReactTechlead",1,20,900,2),
 ("Coaching","Nest.jsTechlead",1,50,800,1),
-("Coaching","ReactTeachead",3,50,1000,1),
+("Coaching","ReactTechlead",3,50,1000,1),
 ("Coaching","Jakarta EE",3,100,900,2),
 ("Coaching","AngularTechlead",4,5,500,0),
 ("Coaching","AngularTechlead",3,5,500,0),
