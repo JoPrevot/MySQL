@@ -53,7 +53,7 @@ INSERT INTO clients(companyName,firstName,lastName,email,phone,adress,zipCode,ci
 
 -- 3. Afficher toutes les formations sollicités parle client M2i formation
 
-SELECT * FROM orders WHERE clientId=2;
+SELECT orders.typePresta,orders.designation FROM orders WHERE clientId=2;
 
 -- 4. Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching
 
@@ -73,4 +73,17 @@ WHERE orders.typePresta="Coaching" AND orders.designation="ReactTechlead";
 
 -- 6. Pour chacune des demandes de formation, afficher le prix UHT et prix TTC en se basant sur le unité Price (TJM)
 -- et le nombre de jours de prestation tout en sachant que la TVA est de 20%.
+
+
+-- On crée la view (je ne sais pas quelles sont les infos attendues, donc on met juste le type de presta):
+
+CREATE VIEW priceTotal AS SELECT 
+id,
+CONCAT(unitPrice*nbDays," €") AS totalExcludeTaxe,
+CONCAT(unitPrice*nbDays*1.2," €") AS totalWithTaxe
+FROM orders;
+
+-- Puis on affiche la view :
+
+SELECT * FROM priceTotal;
 
