@@ -62,3 +62,15 @@ FROM clients
 JOIN orders 
 ON clients.id=orders.clientID 
 WHERE orders.typePresta="Coaching";
+
+-- 5. Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching pour les accompagnements React.js
+
+SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastname," ",clients.phone) AS contact
+FROM clients 
+JOIN orders 
+ON clients.id=orders.clientID 
+WHERE orders.typePresta="Coaching" AND orders.designation="ReactTechlead";
+
+-- 6. Pour chacune des demandes de formation, afficher le prix UHT et prix TTC en se basant sur le unité Price (TJM)
+-- et le nombre de jours de prestation tout en sachant que la TVA est de 20%.
+
