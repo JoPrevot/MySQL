@@ -96,3 +96,19 @@ FROM telephones;
 -- On peut ensuite afficher la vue
 
 SELECT * FROM v_revenu_total;
+
+-- 3.6 Elimination des duplicats pour afficher seulement 1 exemplaire d'une colonne (on veut par exemple lister les fabriquants)
+
+-- On utilise la requête <DISTINCT>
+
+SELECT DISTINCT(manufacturer) FROM telephones;
+
+-- 3.7 On souhaite compter le nombre de records total (par exemple le nombre de tel)
+
+-- On utilise <COUNT> 
+
+SELECT COUNT(*) FROM telephones;
+
+-- Ou selon une contrainte spécifique (le nombre de téléphones de la marque Apple)
+
+SELECT COUNT(*) FROM telephones WHERE manufacturer="Apple";
