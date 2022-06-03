@@ -112,3 +112,20 @@ SELECT COUNT(*) FROM telephones;
 -- Ou selon une contrainte spécifique (le nombre de téléphones de la marque Apple)
 
 SELECT COUNT(*) FROM telephones WHERE manufacturer="Apple";
+
+-- 3.8 On souhaite afficher le total des ventes de tout les tel
+
+-- On utilise la requête <SUM> puis ce que l'on veut additionner ()
+
+SELECT SUM(units_sold) FROM telephones;
+
+-- 3.9 Afficher la valeur moyenne d'une colonne
+
+-- Requête average <AVG>
+
+SELECT AVG(units_sold) FROM telephones;
+
+-- 3.10 On peut de la même manière afficher le minimum <MIN> et le maximum <MAX>:
+
+SELECT MIN(units_sold) FROM telephones;
+SELECT MAX(units_sold) FROM telephones;
