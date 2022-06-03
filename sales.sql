@@ -170,3 +170,19 @@ VALUES
 ("0123451298",5),
 ("0122252798",6)
 ;
+
+-- Affichage de tous les numéros de téléphones de tous les clients (requête de jointure)
+
+-- Tables sollicitées: clients et téléphone
+
+-- Pour choisir les données d'une table spécifique, on va mettre le nom de table et la colonne voulue <table.colonne>
+
+-- Pour faire la jonction entre les tables, on utilise <FROM> la DB mère <JOIN> la DB secondaire <ON> 
+
+-- Et on précise où est faite la jointure: la colonne de la DB principale = la colonne de la DB secondaire
+
+SELECT clients.prenom, clients.nom, telephone.numero FROM clients JOIN telephone ON clients.id=telephone.id_client;
+
+-- Autre exemple avec ajout d'un CONCAT et d'un alias:
+
+SELECT CONCAT(clients.prenom, " ",clients.nom) AS nom, telephone.numero FROM clients JOIN telephone ON clients.id=telephone.id_client;
