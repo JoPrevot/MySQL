@@ -154,3 +154,19 @@ CREATE TABLE telephone(
     id_client INTEGER,
     FOREIGN KEY(id_client) REFERENCES clients(id) ON DELETE CASCADE
 );
+
+-- On peut maintenant ajouter des valeurs dans cette nouvelle table
+
+INSERT INTO telephone(numero,id_client) 
+VALUES
+("0123456798",1),
+("0153456798",1),
+("012345698",2),
+("0123456798",2),
+("0124456798",2),
+("0123458798",4),
+("0123452798",4),
+("0178452798",4),
+("0123451298",5),
+("0122252798",6)
+;
