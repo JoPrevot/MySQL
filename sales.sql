@@ -73,4 +73,11 @@ SELECT name, manufacturer, price*units_sold FROM telephones;
 
 -- Il suffit de mettre le nom présent dans la table <price> suivi de <AS> et du nom d'affichage souhaité <prix>
 
-SELECT name as modele, manufacturer as constructeur, price AS prix, units_sold AS unités_vendues, price*units_sold AS CA FROM telephones;
+SELECT name as modele, manufacturer as constructeur, price AS prix, units_sold AS unités_vendues, price*units_sold AS chiffre_affaire 
+FROM telephones;
+
+-- 3.4 On souhaite désormais afficher le prix suivi de euros, ou la marque d'un téléphone suivi d'un modèle
+
+-- On utilise la requête de concaténation <CONCAT> suivi des colonnes ou arguments que l'on veut concaténer
+
+SELECT CONCAT(manufacturer, " ", name) AS nom, CONCAT(price,"€") AS prix FROM telephones;
