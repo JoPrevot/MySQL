@@ -3,7 +3,8 @@
 CREATE DATABASE Sales;
 
 USE Sales;
- -- 1.2 Créer une table appeléetelephonesavec les colonnes suivantes ...
+
+ -- 1.2 Créer une table appelée telephones avec les colonnes suivantes (cf exo)
 
 CREATE TABLE telephones(
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -13,7 +14,7 @@ price FLOAT(4,2) NOT NULL,
 units_sold INTEGER(10) NOT NULL
 );
 
--- 1.3 Insérer les données suivantes
+-- 1.3 Insérer les données suivantes (cf exo)
 
 INSERT INTO telephones(name,manufacturer,price,units_sold) values
 ("N1280","Nokia",199,1925),
@@ -34,7 +35,7 @@ SELECT * FROM telephones;
 
 SELECT name,manufacturer FROM telephones WHERE price>200;
 
--- 2.3 Ecrire une requête pour lister tous les telephone(name,manufacturer) de tous lestéléphone dont le prix est varie entre 150 et 200€
+-- 2.3 Ecrire une requête pour lister tous les telephones (name,manufacturer) de tous les téléphones dont le prix est varie entre 150 et 200€
 
 SELECT name,manufacturer FROM telephones WHERE price>=150 AND price<=200;
 
@@ -49,3 +50,14 @@ SELECT * FROM telephones WHERE manufacturer="Apple" OR manufacturer="Samsung";
 -- On peut regrouper toutes les conditions ici avec <IN> plutôt que d'utiliser des OR :
 
 SELECT * FROM `telephones` WHERE manufacturer IN("Apple","Samsung");
+
+-- 3.1 On peut vouloir afficher la liste sous un certain ordre (prix)
+
+-- Pour cela, on utilise <ORDER BY> puis la condition d'ordre <prix> et on termine par l'ordre ascendant <ASC> ou descendant <DESC>
+
+SELECT id,name,manufacturer,price FROM telephones ORDER BY price ASC;
+
+-- On peut aussi ajouter un deuxième niveau de critère pour l'ordre (exemple, on veut trier par prix, puis ensuite par fabriquant)
+
+SELECT id,name,manufacturer,price FROM telephones ORDER BY price ASC, manufacturer ASC;
+
