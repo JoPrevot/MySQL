@@ -129,3 +129,28 @@ SELECT AVG(units_sold) FROM telephones;
 
 SELECT MIN(units_sold) FROM telephones;
 SELECT MAX(units_sold) FROM telephones;
+
+-- LMD 4 : Relation entre plusieurs tables (mère/enfant) appelé "One To Many"
+
+-- On va pouvoir utiliser la clé primaire de la table initiale (mère) dans la table enfant, qui sera appelée clé étrangère (référence)
+
+-- On reprend la DB clients
+
+CREATE TABLE clients(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(70) UNIQUE,
+    telephone VARCHAR(20) NOT NULL
+);
+
+-- On veut maintenant faire une table secondaire pour les téléphones
+
+-- Il faut préciser la clé étrangère <FOREIGN KEY(son_nouveau_nom)> et son lieu initial <REFERENCES la_table(nom_colonne)>
+
+CREATE TABLE telephone(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    numero VARCHAR(20) NOT NULL,
+    id_client INTEGER,
+    FOREIGN KEY(id_client) REFERENCES clients(id) ON DELETE CASCADE
+);
