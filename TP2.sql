@@ -1,3 +1,5 @@
+-- 1. Création de la DB et des table
+
 CREATE DATABASE TP2;
 
 USE TP2;
@@ -27,6 +29,8 @@ country VARCHAR(30) NOT NULL,
 state INTEGER(1) NOT NULL
 );
 
+-- 2. Remplissage de la DB
+
 INSERT INTO orders(typePresta,designation,clientId,nbDays,unitPrice,state) values
 ("Formation","Angular init",2,3,1200,0),
 ("Formation","React avancé",2,3,1000,2),
@@ -46,3 +50,15 @@ INSERT INTO clients(companyName,firstName,lastName,email,phone,adress,zipCode,ci
 ("ATOS","Jacques","Lean","lean@mail.com","0611223355","abc","xyz","Lille","France",0),
 ("SOPRA STERIA","Pierre","Dupont","dupont@mail.com","0611223388","abc","xyz","Marseille","France",1)
 ;
+
+-- 3. Afficher toutes les formations sollicités parle client M2i formation
+
+SELECT * FROM orders WHERE clientId=2;
+
+-- 4. Afficher les noms et contacts de tous les contacts des clients qui ont sollicité un coaching
+
+SELECT DISTINCT CONCAT(clients.firstName," ",clients.lastname," ",clients.phone) AS contact
+FROM clients 
+JOIN orders 
+ON clients.id=orders.clientID 
+WHERE orders.typePresta="Coaching";
