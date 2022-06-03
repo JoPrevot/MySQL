@@ -51,6 +51,8 @@ SELECT * FROM telephones WHERE manufacturer="Apple" OR manufacturer="Samsung";
 
 SELECT * FROM `telephones` WHERE manufacturer IN("Apple","Samsung");
 
+-- LMD 3 : Fin de l'exercice, suite du cours
+
 -- 3.1 On peut vouloir afficher la liste sous un certain ordre (prix)
 
 -- Pour cela, on utilise <ORDER BY> puis la condition d'ordre <prix> et on termine par l'ordre ascendant <ASC> ou descendant <DESC>
@@ -61,3 +63,14 @@ SELECT id,name,manufacturer,price FROM telephones ORDER BY price ASC;
 
 SELECT id,name,manufacturer,price FROM telephones ORDER BY price ASC, manufacturer ASC;
 
+-- 3.2 On veut maintenant connaitre le chiffre d'affaire des téléphones en fonction de leur prix et du nombre vendu
+
+-- Il suffit de faire la multiplication <*> du prix et des unités vendues dans la commande <SELECT> pas après !
+
+SELECT name, manufacturer, price*units_sold FROM telephones;
+
+-- 3.3 Ici, l'affichage du résultat n'est pas très joli, on peut donc choisir de renommer 1 ou plusieurs colonnes grâce à un alias.
+
+-- Il suffit de mettre le nom présent dans la table <price> suivi de <AS> et du nom d'affichage souhaité <prix>
+
+SELECT name as modele, manufacturer as constructeur, price AS prix, units_sold AS unités_vendues, price*units_sold AS CA FROM telephones;
