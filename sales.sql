@@ -6,7 +6,7 @@ CREATE TABLE telephones(
 id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 manufacturer VARCHAR(30) NOT NULL,
-price FLOAT(10) NOT NULL,
+price FLOAT(4,2) NOT NULL,
 units_sold INTEGER(10) NOT NULL
 );
 
@@ -25,6 +25,6 @@ SELECT * FROM telephones;
 
 SELECT name,manufacturer FROM telephones WHERE price>200;
 
-SELECT name,manufacturer FROM telephones WHERE price>150 AND price<200;
+SELECT name,manufacturer FROM telephones WHERE price>=150 AND price<=200;
 
 SELECT * FROM telephones WHERE manufacturer="Apple" OR manufacturer="Samsung";
