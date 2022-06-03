@@ -78,7 +78,7 @@ WHERE orders.typePresta="Coaching" AND orders.designation="ReactTechlead";
 -- On crée la view (je ne sais pas quelles sont les infos attendues, donc on met juste le type de presta):
 
 CREATE VIEW priceTotal AS SELECT 
-id,
+CONCAT(typePresta," ",designation) AS prestation,
 CONCAT(unitPrice*nbDays," €") AS totalExcludeTaxe,
 CONCAT(unitPrice*nbDays*1.2," €") AS totalWithTaxe
 FROM orders;
@@ -87,3 +87,6 @@ FROM orders;
 
 SELECT * FROM priceTotal;
 
+-- 7. Lister toutes les prestations qui sont confirméset qui vont rapporter plus 30.000€
+
+SELECT prestation FROM priceTotal WHERE totalWithTaxe>=30000;
