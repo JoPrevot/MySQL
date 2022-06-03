@@ -81,3 +81,18 @@ FROM telephones;
 -- On utilise la requête de concaténation <CONCAT> suivi des colonnes ou arguments que l'on veut concaténer
 
 SELECT CONCAT(manufacturer, " ", name) AS nom, CONCAT(price,"€") AS prix FROM telephones;
+
+-- 3.5 Création d'une vue (view) : permet de créer une requête à partir du résultat d'une requête déjà faite 
+
+-- Cela évite de réécrire des requêtes longues
+
+CREATE VIEW v_revenu_total AS 
+SELECT CONCAT(manufacturer, " ", name) AS nom, 
+CONCAT(price," €") AS prix, 
+units_sold AS unites_vendues,
+CONCAT(units_sold*price," €") AS chiffre_affaire 
+FROM telephones;
+
+-- On peut ensuite afficher la vue
+
+SELECT * FROM v_revenu_total;
