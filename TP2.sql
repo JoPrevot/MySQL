@@ -88,6 +88,6 @@ FROM orders;
 
 SELECT * FROM priceTotal;
 
--- 7. Lister toutes les prestations qui sont confirméset qui vont rapporter plus 30.000€
+-- 7. Lister toutes les prestations qui sont confirmées et qui vont rapporter plus 30.000€
 
 SELECT prestation FROM priceTotal WHERE totalWithTaxe>=30000 AND state=2;
