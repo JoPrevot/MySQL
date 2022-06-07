@@ -282,7 +282,5 @@ WHERE photos.id_user=commentaire.id_user
 
 SELECT count(*)
 FROM likes
-JOIN photos
-ON photos.id=likes.id_photo
-WHERE photos.id=4
+WHERE id_photo=4
 ;
