@@ -226,3 +226,63 @@ insert into commentaire (id, contenu, id_user, id_photo) values (38, 'ultrices m
 insert into commentaire (id, contenu, id_user, id_photo) values (39, 'hac habitasse platea dictumst maecenas ut massa quis augue', 11, 60);
 insert into commentaire (id, contenu, id_user, id_photo) values (40, 'justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis', 17, 15);
 
+-- 4. Pour tous les commentaires, montrer le contenu et le username de l'auteur
+
+SELECT commentaire.id, user.username, commentaire.contenu
+FROM user
+JOIN commentaire
+ON commentaire.id_user=user.id
+;
+
+-- 5. Pour chaque commentaire, afficher son contenu et l'url de la photo à laquel le commentaire a été ajouté
+
+SELECT commentaire.id, photos.url_image , commentaire.contenu, user.username
+FROM commentaire
+JOIN user
+ON user.id=commentaire.id_user
+JOIN photos
+ON user.id=photos.id_user
+;
+
+-- 6. Afficher l'url de chaque photo et le nom d'utilisateur de l'auteur
+
+SELECT user.username, photos.url_image
+FROM user
+JOIN photos
+ON photos.id_user=user.id
+;
+
+-- 7. Trouver tous les commentaires pour la photo d'id 3, avec le username de l'utilisateur qui a commenté
+
+SELECT user.username, commentaire.contenu, photos.id
+FROM commentaire
+JOIN user
+ON user.id=commentaire.id_user
+JOIN photos
+ON commentaire.id_photo=photos.id
+WHERE photos.id=3
+;
+
+-- 8. Trouver tous les url des photos ainsi que tous les commentaire qui ont été posté par l'auteur de la photo id 3
+
+SELECT user.username, commentaire.contenu, photos.id, photos.url_image
+FROM commentaire
+JOIN user
+ON user.id=commentaire.id_user
+JOIN photos
+ON commentaire.id_photo=photos.id
+WHERE photos.id_user=commentaire.id_user
+;
+
+-- 9. A l'exercice précedent afficher aussi le nom de l'utilisateur qui a commenté ses propres photos
+
+-- CF au dessus
+
+-- 10. Le nombre de likes pour la photo d’ID 4
+
+SELECT count(*)
+FROM likes
+JOIN photos
+ON photos.id=likes.id_photo
+WHERE photos.id=4
+;
