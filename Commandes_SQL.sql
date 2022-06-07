@@ -206,3 +206,13 @@ FROM telephones
 WHERE price<(SELECT AVG(price) FROM telephones) 
 ORDER BY price DESC
 ;
+
+-- Possibilité de joindre plusieurs tables entre elles :
+
+SELECT CONCAT(clients.nom, " ",clients.prenom) AS client, produits.designation
+FROM produits
+JOIN achats
+ON achats.id_produit=produits.id
+JOIN clients
+ON achats.id_client=clients.id
+;
