@@ -110,3 +110,99 @@ CONCAT(<colonne1>, " ",<colonne2>) AS <XXX>,
 CONCAT(<colonne3>, " ",<colonne4>) AS <YYY> 
 FROM <nom_table>
 ;
+
+-- Requête pour compter <COUNT> / sommer <SUM> / moyenner <AVG> :
+
+SELECT COUNT(*) 
+FROM <nom_table> 
+WHERE <colonne4>="XXX"
+;
+
+-- Relation entre 2 tables : il faut définir une clé étrangère (référence)
+
+CREATE TABLE clients(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    email VARCHAR(70) UNIQUE,
+    telephone VARCHAR(20) NOT NULL
+);
+
+-- On veut maintenant faire une table secondaire pour les téléphones
+
+-- Il faut préciser la clé étrangère <FOREIGN KEY(son_nouveau_nom)> et son lieu initial <REFERENCES la_table(nom_colonne)>
+
+CREATE TABLE telephone(
+    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    numero VARCHAR(20) NOT NULL,
+    id_client INTEGER,
+    FOREIGN KEY(id_client) REFERENCES clients(id) ON DELETE CASCADE
+);
+
+-- Requête de jointure (entre 2 tables: clients et téléphone)
+
+-- Pour faire la jonction entre les tables, on utilise <FROM> la DB mère <JOIN> la DB secondaire <ON> 
+
+-- Et on précise où est faite la jointure: la colonne de la DB principale = la colonne de la DB secondaire
+
+SELECT clients.prenom, clients.nom, telephone.numero 
+FROM clients 
+JOIN telephone 
+ON clients.id=telephone.id_client
+;
+
+-- Autre exemple avec ajout d'un CONCAT et d'un alias:
+
+SELECT CONCAT(clients.prenom, " ",clients.nom) AS nom, telephone.numero 
+FROM clients 
+JOIN telephone 
+ON clients.id=telephone.id_client
+;
+
+-- Il est possible de définir les requêtes mathèmatiques comme calcul automatique via <GENERATED ALWAYS> <AS> <le_calcul> <STORED>
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `clientId` int(11) NOT NULL,
+  `typePresta` varchar(100) NOT NULL,
+  `designation` varchar(100) NOT NULL,
+  `nbDays` int(11) NOT NULL,
+  `unitPrice` float NOT NULL,
+  `state` tinyint(1) NOT NULL,
+  `totalExcludeTaxe` float GENERATED ALWAYS AS (`nbDays` * `unitPrice`) STORED,
+  `totalWithTaxe` float GENERATED ALWAYS AS (`nbDays` * `unitPrice` * 1.2) STORED
+);
+
+-- Utilisation de filtres de recherche avec <LIKE> et <%>
+
+SELECT * 
+FROM clients 
+WHERE companyName LIKE "M2%"
+;
+
+SELECT * 
+FROM clients 
+WHERE companyName LIKE "%formation"
+;
+
+SELECT * 
+FROM clients 
+WHERE  companyName LIKE "%sopra%"
+;
+
+-- Requête HAVING : utilisé à la place de WHERE lorsque l'on groupe des résultats
+
+-- Toutes les ventes des marques qui ont réalisé un CA de plus de 20000000
+
+SELECT manufacturer,SUM(price*units_sold) as chiffre_affaire 
+FROM telephones 
+GROUP BY manufacturer HAVING chiffre_affaire>20000000
+;
+
+-- Requête SELECT dans une contrainte WHERE:
+
+SELECT name, price 
+FROM telephones 
+WHERE price<(SELECT AVG(price) FROM telephones) 
+ORDER BY price DESC
+;
