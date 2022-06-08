@@ -266,10 +266,10 @@ WHERE photos.id=3
 -- 8. Trouver tous les url des photos ainsi que tous les commentaire qui ont été posté par l'auteur de la photo id 3
 
 SELECT user.username, commentaire.contenu, photos.id, photos.url_image
-FROM commentaire
-JOIN user
-ON user.id=commentaire.id_user
+FROM user
 JOIN photos
+ON photos.id_user=user.id
+JOIN commentaire
 ON commentaire.id_photo=photos.id
 WHERE photos.id_user=commentaire.id_user
 ;
